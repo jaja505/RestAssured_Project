@@ -39,8 +39,26 @@ public class RestAssured_Intro {
         response.prettyPrint();
         System.out.println("==================================================");
         response.prettyPeek();
+    }
 
+    @DisplayName("Testing Get/apia/spartans/{id}")
+    @Test
+    public void testSingleSpartan(){
 
+        //get("http://34.229.69.26:8000/api/spartans/1");
+        Response response = get("http://34.229.69.26:8000/api/spartans/1").prettyPeek();
+
+        assertThat(response.statusCode(), is(equalTo(200)));
+        assertThat(response.contentType(),is("application/json"));
+        assertThat(response.header("Connection"),is("keep-alive"));
+
+        //getting the field value of Json Body
+       // System.out.println("response.asString() = " + response.asString());
+
+        System.out.println("====================================================");
+        System.out.println("response.path(\"id\") = " + response.path("id"));
+        System.out.println("response.path(\"name\") = " + response.path("name"));
+        System.out.println("response.path(\"gender\") = " + response.path("gender"));
 
 
 
